@@ -24,5 +24,5 @@ dist-ssr
 *.sw?
 
 # Local assets
-public/background-removal/*
-!public/background-removal/.gitkeep
+# public/background-removal/*
+# !public/background-removal/.gitkeep
