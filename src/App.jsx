@@ -42,8 +42,12 @@ function App() {
     /**
      * CRITICAL: Official stable CDN for WASM and model files.
      */
+    // Robust path resolution for both local and production (Vercel)
+    const baseUrl = import.meta.env.BASE_URL
+    const publicPath = new URL(`${baseUrl}background-removal/`, window.location.href).href
+
     const config = {
-      publicPath: window.location.origin + '/background-removal/',
+      publicPath,
       progress: (key, current, total) => {
         const percentage = Math.round((current / total) * 100)
         setProgress(percentage)
