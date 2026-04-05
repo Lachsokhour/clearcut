@@ -39,6 +39,12 @@ header {
   border-color: rgba(139, 92, 246, 0.5);
 }
 
+.title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
 h1 {
   font-size: 2.5rem;
   font-weight: 800;
@@ -55,8 +61,22 @@ h1 {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shine-text 5s linear infinite;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0px;
   line-height: 1.1;
+}
+
+.version-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--primary);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 99px;
+  letter-spacing: 0.05em;
+  height: fit-content;
+  align-self: center;
+  transform: translateY(2px);
 }
 
 @keyframes shine-text {
@@ -472,11 +492,15 @@ h1 {
 
 /* FOOTER */
 footer {
-  margin-top: auto;
-  padding: 4rem 2rem;
-  opacity: 0.5;
-  font-size: 0.85rem;
+  margin-top: 2rem;
+  padding: 2.5rem 1.5rem 0 1.5rem;
+  opacity: 0.6;
+  font-size: 0.82rem;
   text-align: center;
+  line-height: 1.6;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* PRIVACY FEATURES */
