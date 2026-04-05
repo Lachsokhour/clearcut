@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { removeBackground } from '@imgly/background-removal'
 import { UploadCloud, Scissors, Download, RefreshCw, Sparkles, ImagePlus, Github } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -30,6 +30,31 @@ function App() {
     const droppedFile = e.dataTransfer.files[0]
     if (droppedFile && droppedFile.type.startsWith('image/')) {
       setupFile(droppedFile)
+    }
+  }
+
+  // Handle Clipboard Paste
+  useEffect(() => {
+    const handlePaste = (e) => {
+      const item = e.clipboardData.items[0]
+      if (item && item.type.startsWith('image/')) {
+        const file = item.getAsFile()
+        setupFile(file)
+      }
+    }
+
+    window.addEventListener('paste', handlePaste)
+    return () => window.removeEventListener('paste', handlePaste)
+  }, [])
+
+  const handleSampleSelect = async (name) => {
+    try {
+      const response = await fetch(`${import.meta.env.BASE_URL}samples/${name}.png`)
+      const blob = await response.blob()
+      const file = new File([blob], `${name}.png`, { type: 'image/png' })
+      setupFile(file)
+    } catch (error) {
+      console.error('Error loading sample:', error)
     }
   }
 
@@ -132,8 +157,39 @@ function App() {
                   <UploadCloud size={40} />
                 </div>
                 <div className="upload-title">ទម្លាក់រូបភាពរបស់អ្នកនៅទីនេះ</div>
-                <p className="upload-hint">គាំទ្រ PNG, JPG ឬ WEBP រហូតដល់ ២០MB</p>
+                <p className="upload-hint">គាំទ្រ PNG, JPG ឬ WEBP រហូតដល់ ២០MB (ឬបិទភ្ជាប់ដោយ Ctrl+V)</p>
                 <button className="btn-browse" type="button">ជ្រើសរើសឯកសារ</button>
+              </div>
+
+              <div className="sample-section">
+                <div className="sample-header">
+                  <div className="sample-line"></div>
+                  <span>ឬជ្រើសរើសរូបភាពគំរូ</span>
+                  <div className="sample-line"></div>
+                </div>
+                <div className="sample-grid">
+                  {[
+                    { id: 'person', label: 'មនុស្ស', icon: '👤' },
+                    { id: 'pet', label: 'សត្វចិញ្ចឹម', icon: '🐕' },
+                    { id: 'object', label: 'វត្ថុ', icon: '👜' }
+                  ].map((sample) => (
+                    <motion.div 
+                      key={sample.id}
+                      className="sample-card"
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => handleSampleSelect(sample.id)}
+                    >
+                      <div className="sample-thumb">
+                        <img src={`${import.meta.env.BASE_URL}samples/${sample.id}.png`} alt={sample.label} />
+                        <div className="sample-overlay">
+                          <span>សាកល្បង</span>
+                        </div>
+                      </div>
+                      <span className="sample-label">{sample.label}</span>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ) : (

@@ -8,6 +8,8 @@
 
 - **100% Private**: All AI processing happens locally on your device. (ឯកជនភាព ១០០%៖ រាល់ដំណើរការ AI ទាំងអស់ធ្វើឡើងនៅលើឧបករណ៍របស់អ្នកផ្ទាល់)
 - **High-End UI**: Responsive, glassmorphism-inspired design reflecting modern aesthetics. (រចនាបថទំនើប៖ ស្រស់ស្អាត និងងាយស្រួលប្រើលើគ្រប់ឧបករណ៍)
+- **Clipboard Paste Support**: Quickly paste images directly from your clipboard with `Ctrl+V`. (គាំទ្រការបិទភ្ជាប់៖ បិទភ្ជាប់រូបភាពភ្លាមៗដោយប្រើ `Ctrl+V`)
+- **Sample Gallery**: Try the AI instantly with pre-provided high-quality samples. (រូបភាពគំរូ៖ សាកល្បង AI ភ្លាមៗជាមួយរូបភាពគំរូដែលផ្តល់ជូន)
 - **Khmer Support**: Fully localized in Khmer with the beautiful Kantumruy Pro font. (គាំទ្រភាសាខ្មែរ៖ បានបកប្រែពេញលេញ និងប្រើប្រាស់ពុម្ពអក្សរ កន្ទុយហ្ម Pro)
 - **Instant Downloads**: Save your results as high-quality PNGs with automatic timestamps. (ទាញយកភ្លាមៗ៖ រក្សាទុកលទ្ធផលជា PNG ដែលមានគុណភាពខ្ពស់)
 
@@ -41,6 +43,13 @@
    ```bash
    npm run build
    ```
+
+## 🌍 Deployment | ការដាក់ឱ្យដំណើរការ
+
+When deploying to platforms like **Vercel** or **GitHub Pages**, ensure that the `public/background-removal/` folder is included in your git repository. This folder contains the necessary WASM and AI model files (~100MB) required for local processing.
+
+> [!IMPORTANT]
+> Make sure your `.gitignore` does not exclude the `public/background-removal/` directory if you want it to work on production.
 
 ## 🔒 Security & Privacy | សន្តិសុខ និងឯកជនភាព
 
