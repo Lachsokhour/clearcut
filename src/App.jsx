@@ -113,7 +113,7 @@ function App() {
             <h1>ClearCut</h1>
             <span className="version-badge">v1.0.0</span>
           </div>
-          <a 
+          {/* <a 
             href="https://github.com/Lachsokhour/clearcut" 
             target="_blank" 
             rel="noopener noreferrer"
@@ -121,7 +121,7 @@ function App() {
             title="View on GitHub"
           >
             <Github size={20} />
-          </a>
+          </a> */}
         </motion.div>
         <motion.p 
           className="tagline"
